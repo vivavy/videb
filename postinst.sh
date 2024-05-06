@@ -1,0 +1,1 @@
+ln -s /usr/share/videb/videb.py /usr/bin/videb

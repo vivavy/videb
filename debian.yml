@@ -1,0 +1,28 @@
+postinst: postinst.sh
+preinst: null
+postrm: postrm.sh
+prerm: null
+changelog: null
+package: vi-debian-packager
+version: 0.0.1-2+manylinux2024
+provides: videb
+mainer: Ivan Chetchasov <chetvano@gmail.com>
+arch: all
+category:
+  - utils
+desc: Vi Debian *.deb Packager
+deps:
+  - python3.11
+predeps: []
+priority: optional
+origin: chetvano@gmail.com
+dirs:
+  - /usr/share/videb
+  - /usr/bin
+files:
+  - - videb.py
+    - /usr/share/videb/videb.py
+  - - pkg.py
+    - /usr/share/videb/pkg.py
+  - - ctrl.py
+    - /usr/share/videb/ctrl.py
