@@ -6,5 +6,5 @@ deb:
 	chmod +x videb.py
 	./videb.py debian.yml create
 
-install:
+install: deb
 	dpkg -i *.deb

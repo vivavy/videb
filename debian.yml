@@ -3,8 +3,8 @@ preinst: null
 postrm: postrm.sh
 prerm: null
 changelog: null
-package: vi-debian-packager
-version: 0.0.1-2+manylinux2024
+package: videb
+version: 0.0.2-1+manylinux2024
 provides: videb
 mainer: Ivan Chetchasov <chetvano@gmail.com>
 arch: all

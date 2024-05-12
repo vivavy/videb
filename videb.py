@@ -14,7 +14,7 @@ import pkg
 
 logging.basicConfig(level=logging.INFO)
 
-basedir = os.path.dirname(os.path.realpath(__file__))
+cwd = os.getcwd().removesuffix("/")
 
 if sys.argv[-1] != "create":
     print("Usage: videb <config.yml> create")
@@ -31,13 +31,13 @@ pkg.create_fs()
 pkg.create_control()
 pkg.create_package(move=False)
 
-pkg.set_size(os.path.getsize(basedir + "/packdir.deb") // 1000)  # kBs, not kiBs
+pkg.set_size(os.path.getsize(cwd + "/packdir.deb") // 1000)  # kBs, not kiBs
 
-os.remove(basedir + "/packdir.deb")
+os.remove(cwd + "/packdir.deb")
 
 pkg.create_fs()
 pkg.create_control()
 pkg.create_package()
 
 logging.info("Cleaning up")
-shutil.rmtree(basedir + "/packdir")
+shutil.rmtree(cwd + "/packdir")

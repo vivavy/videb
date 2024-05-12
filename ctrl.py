@@ -3,7 +3,7 @@ import os, sys, shutil, logging
 
 logging.basicConfig(level=logging.INFO)
 
-basedir = os.path.dirname(os.path.realpath(__file__))
+cwd = os.getcwd().removesuffix("/")
 
 
 # made to prevent cyclic imports
@@ -48,24 +48,24 @@ class Ctrl:
         data += "Origin: " + self.origin + "\n"
         data += "Installed-Size: " + str(self.package.size) + "\n"
         
-        with open(basedir + "/packdir/DEBIAN/control", "wt") as f:
+        with open(cwd + "/packdir/DEBIAN/control", "wt") as f:
             f.write(data)
         
         # copy postinst and preinst
         if self.config["postinst"] is not None:
-            shutil.copy(self.config["postinst"], basedir + "packdir/DEBIAN/postinst")
+            shutil.copy(self.config["postinst"], cwd + "/packdir/DEBIAN/postinst")
         if self.config["preinst"] is not None:
-            shutil.copy(self.config["preinst"], basedir + "packdir/DEBIAN/preinst")
+            shutil.copy(self.config["preinst"], cwd + "/packdir/DEBIAN/preinst")
         
         # copy postrm and prerm
         if self.config["postrm"] is not None:
-            shutil.copy(self.config["postrm"], basedir + "packdir/DEBIAN/postrm")
+            shutil.copy(self.config["postrm"], cwd + "/packdir/DEBIAN/postrm")
         if self.config["prerm"] is not None:
-            shutil.copy(self.config["prerm"], basedir + "packdir/DEBIAN/prerm")
+            shutil.copy(self.config["prerm"], cwd + "/packdir/DEBIAN/prerm")
         
         # copy changelog
         if self.config["changelog"] is not None:
-            shutil.copy(self.config["changelog"], basedir + "/packdir/DEBIAN/changelog")
+            shutil.copy(self.config["changelog"], cwd + "/packdir/DEBIAN/changelog")
 
         # generate dirs file
 
@@ -73,5 +73,5 @@ class Ctrl:
         for dir in self.config["dirs"]:
             data += dir + "\n"
 
-        with open(basedir + "/packdir/DEBIAN/dirs", "wt") as f:
+        with open(cwd + "/packdir/DEBIAN/dirs", "wt") as f:
             f.write(data)
